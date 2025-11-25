@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budi & Sinta • Undangan Pernikahan</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Playfair+Display:wght@400;700&family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Envelope Cover -->
+    <div class="envelope-wrapper" id="envelope">
+        <div class="envelope">
+            <div class="flap"></div>
+            <div class="letter">
+                <div class="seal">❦</div>
+                <h1>Budi & Sinta</h1>
+                <p class="date">28 Februari 2026</p>
+                <p class="to">Kepada Yth.<br><span id="guestName">Bapak/Ibu/Saudara/i</span></p>
+                <button id="openEnvelope">Buka Amplop</button>
+            </div>
+        </div>
+        <div class="flowers"></div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content" id="mainContent">
+
+        <!-- Hero -->
+        <section class="hero">
+            <div class="vintage-frame">
+                <h1 class="bride-groom">Budi <span>&</span> Sinta</h1>
+                <p class="tagline">With love and joy, we invite you to celebrate our wedding</p>
+            </div>
+        </section>
+
+        <!-- Ayat Suci -->
+        <section class="quote">
+            <div class="paper">
+                <p class="ayat">Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu pasangan dari jenismu sendiri, supaya kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang. Sesungguhnya pada yang demikian itu benar-benar terdapat tanda-tanda bagi kaum yang berfikir.</p>
+                <p class="sura">— Q.S. Ar-Rum : 21 —</p>
+            </div>
+        </section>
+
+        <!-- Mempelai -->
+        <section class="couple">
+            <div class="person">
+                <div class="frame">
+                    <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Budi">
+                </div>
+                <h3>Budi Santoso</h3>
+                <p>Putra dari Bapak Ahmad & Ibu Nur</p>
+            </div>
+            <div class="ampersand">&</div>
+            <div class="person">
+                <div class="frame">
+                    <img src="https://images.unsplash.com/photo-1583766395103-f7098c04a22e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Sinta">
+                </div>
+                <h3>Sinta Wulandari</h3>
+                <p>Putri dari Bapak Joko & Ibu Sari</p>
+            </div>
+        </section>
+
+        <!-- Acara -->
+        <section class="event">
+            <div class="card">
+                <h2>Akad Nikah</h2>
+                <p>Sabtu, 28 Februari 2026<br>08.00 WIB - selesai</p>
+                <p class="loc">Kediaman Mempelai Wanita<br>Jl. Melati No. 25, Yogyakarta</p>
+            </div>
+            <div class="card">
+                <h2>Resepsi</h2>
+                <p>Sabtu, 28 Februari 2026<br>11.00 - 15.00 WIB</p>
+                <p class="loc">Rose Garden Ballroom<br>Jl. Mawar Merah No. 88, Sleman</p>
+                <a href="https://maps.google.com/?q=Rose+Garden+Ballroom+Sleman" target="_blank" class="map-btn">Buka Lokasi</a>
+            </div>
+        </section>
+
+        <!-- Gallery -->
+        <section class="gallery">
+            <div class="gallery-grid">
+                <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="">
+                <img src="https://images.unsplash.com/photo-1606216797276-5e9c0a4b5ed3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="">
+                <img src="https://images.unsplash.com/photo-1519742866993-66d97925f1f8?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="">
+                <img src="https://images.unsplash.com/photo-1606041008023-472de19fcb68?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="">
+            </div>
+        </section>
+
+        <!-- Countdown -->
+        <section class="countdown">
+            <h3>We Are Getting Married In</h3>
+            <div id="timer">
+                <div><span id="days">00</span><small>Days</small></div>
+                <div><span id="hours">00</span><small>Hours</small></div>
+                <div><span id="minutes">00</span><small>Minutes</small></div>
+                <div><span id="seconds">00</span><small>Seconds</small></div>
+            </div>
+        </section>
+
+        <!-- RSVP & Ucapan -->
+        <section class="rsvp">
+            <div class="paper">
+                <h3>Konfirmasi Kehadiran</h3>
+                <form id="rsvpForm">
+                    <input type="text" placeholder="Nama Lengkap" required>
+                    <select required>
+                        <option value="" disabled selected>Jumlah yang hadir</option>
+                        <option>1 Orang</option>
+                        <option>2 Orang</option>
+                        <option>3 Orang atau lebih</option>
+                    </select>
+                    <button type="submit">Kirim Konfirmasi</button>
+                </form>
+
+                <h3 style="margin-top:50px;">Kirim Doa & Ucapan</h3>
+                <form id="wishForm">
+                    <textarea placeholder="Tuliskan ucapan terbaik untuk kami..." rows="4" required></textarea>
+                    <button type="submit">Kirim Ucapan</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Music -->
+        <div class="music-toggle" id="musicToggle">♪ Musik OFF</div>
+        <audio id="bgMusic" loop>
+            <source src="https://assets.mixkit.co/sfx/preview/mixkit-soft-piano-wedding-march-558.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
