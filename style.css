@@ -1,0 +1,185 @@
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+    font-family: 'Cormorant Garamond', serif;
+    background: #fdf6f0 url('https://i.ibb.co/4p7YQ7K/vintage-paper.jpg') repeat;
+    color: #5d4037;
+    line-height: 1.8;
+}
+
+/* Envelope Cover */
+.envelope-wrapper {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100vh;
+    background: #faf0e6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+}
+.envelope {
+    width: 380px; height: 500px;
+    background: #f5e6d3;
+    position: relative;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+    border-radius: 10px;
+}
+.flap {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 200px;
+    background: #f5e6d3;
+    clip-path: polygon(0 0, 100% 0, 50% 200px);
+    z-index: 2;
+}
+.letter {
+    position: absolute;
+    top: 60px; left: 30px; right: 30px;
+    background: #fffdf8;
+    height: 380px;
+    padding: 50px 30px;
+    text-align: center;
+    border: 2px dashed #d4a373;
+    z-index: 1;
+}
+.seal { font-size: 4rem; color: #c19a6b; margin-bottom: 20px; }
+.letter h1 { font-family: 'Dancing Script'; font-size: 4rem; color: #8d5524; }
+.date { font-size: 1.5rem; margin: 20px 0; color: #a67c52; }
+.to span { font-size: 1.8rem; font-weight: bold; color: #8d5524; }
+#openEnvelope {
+    margin-top: 40px;
+    padding: 12px 35px;
+    background: #a67c52;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-family: 'Playfair Display';
+    cursor: pointer;
+}
+.flowers {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: url('https://i.ibb.co/2q7jY7Q/floral-corner.png') top left no-repeat,
+                url('https://i.ibb.co/2q7jY7Q/floral-corner.png') bottom right no-repeat;
+    background-size: 200px;
+    opacity: 0.7;
+}
+
+/* Main Content */
+.main-content { display: none; padding-bottom: 80px; }
+
+/* Hero */
+.hero {
+    height: 90vh;
+    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)),
+                url('https://images.unsplash.com/photo-1515934751635-c81c6ebb9c92?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=90') center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+}
+.vintage-frame {
+    background: rgba(255,255,255,0.9);
+    padding: 60px 80px;
+    border: 15px double #c19a6b;
+    max-width: 90%;
+}
+.bride-groom { font-family: 'Dancing Script'; font-size: 6rem; color: #8d5524; }
+.bride-groom span { margin: 0 30px; font-size: 4rem; }
+.tagline { font-style: italic; font-size: 1.4rem; margin-top: 20px; color: #666; }
+
+/* Quote & Paper */
+.paper {
+    max-width: 800px;
+    margin: 60px auto;
+    background: #fffdf8;
+    padding: 50px;
+    border: 1px solid #e8dcca;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    position: relative;
+}
+.paper::before {
+    content: '';
+    position: absolute;
+    top: -20px; left: 50%;
+    transform: translateX(-50%);
+    width: 80px; height: 80px;
+    background: url('https://i.ibb.co/5YpY7YQ/wax-seal.png') center/contain no-repeat;
+}
+.ayat { font-size: 1.4rem; line-height: 2; color: #5d4037; }
+.sura { margin-top: 30px; font-weight: bold; color: #a67c52; }
+
+/* Couple */
+.couple {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+    padding: 80px 20px;
+    flex-wrap: wrap;
+    background: #fdf6f0;
+}
+.frame {
+    width: 280px; height: 380px;
+    padding: 20px;
+    background: #fff;
+    border: 10px double #d4a373;
+    margin-bottom: 20px;
+}
+.frame img { width: 100%; height: 100%; object-fit: cover; }
+.person h3 { font-family: 'Dancing Script'; font-size: 2.5rem; color: #8d5524; text-align: center; }
+.ampersand { font-family: 'Dancing Script'; font-size: 5rem; color: #c19a6b; }
+
+/* Event Card */
+.event { padding: 60px 20px; text-align: center; }
+.card {
+    display: inline-block;
+    width: 380px;
+    margin: 20px;
+    padding: 40px;
+    background: #fffdf8;
+    border: 2px solid #d4a373;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+.card h2 { font-family: 'Playfair Display'; color: #8d5524; margin-bottom: 20px; }
+.map-btn {
+    margin-top: 20px;
+    padding: 10px 30px;
+    background: #a67c52;
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    display: inline-block;
+}
+
+/* Gallery & Countdown sama seperti sebelumnya, tinggal tambah sedikit sentuhan vintage */
+.gallery-grid img { border: 10px solid #fff; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+
+.countdown { background: #fdf6f0; padding: 80px 20px; text-align: center; }
+#timer div { background: #fff; border: 3px solid #d4a373; }
+
+/* RSVP */
+.rsvp .paper input,
+.rsvp .paper select,
+.rsvp .paper textarea {
+    border: 1px dashed #d4a373;
+    background: #fffdf8;
+}
+.rsvp button {
+    background: #a67c52;
+    color: white;
+    border-radius: 50px;
+    padding: 12px 30px;
+}
+
+/* Music */
+.music-toggle {
+    position: fixed;
+    bottom: 20px; right: 20px;
+    background: rgba(141,85,36,0.9);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 50px;
+    cursor: pointer;
+    z-index: 100;
+}
