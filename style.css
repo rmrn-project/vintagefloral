@@ -1,185 +1,79 @@
+/* Reset & Base */
 * { margin:0; padding:0; box-sizing:border-box; }
-body {
-    font-family: 'Cormorant Garamond', serif;
-    background: #fdf6f0 url('https://i.ibb.co/4p7YQ7K/vintage-paper.jpg') repeat;
-    color: #5d4037;
-    line-height: 1.8;
+body { font-family:'Poppins', sans-serif; overflow:hidden; height:100vh; color:#5d4037; }
+a { text-decoration:none; }
+
+/* Background Vintage Floral */
+.bg-floral {
+  position:fixed; top:0; left:0; width:100%; height:100%;
+  background: url('https://images.unsplash.com/photo-1585312263331-22775d03db62?w=1200&q=80') center/cover no-repeat;
+  z-index:-2;
+}
+.overlay {
+  position:fixed; top:0; left:0; width:100%; height:100%;
+  background: rgba(255,248,240,0.88);
+  z-index:-1;
 }
 
-/* Envelope Cover */
-.envelope-wrapper {
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100vh;
-    background: #faf0e6;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 999;
+/* Cover */
+.cover {
+  position:fixed; inset:0; background:rgba(255,248,240,0.97);
+  display:flex; align-items:center; justify-content:center;
+  transition: all 1.2s ease; z-index:99;
 }
-.envelope {
-    width: 380px; height: 500px;
-    background: #f5e6d3;
-    position: relative;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.2);
-    border-radius: 10px;
+.cover.active { opacity:1; visibility:visible; }
+.cover.hidden { opacity:0; visibility:hidden; transform:scale(0.95); }
+
+.cover-inner {
+  text-align:center; padding:2rem;
+  background:url('https://images.unsplash.com/photo-1585312263331-22775d03db62?w=800&blur=20') center/cover;
+  border-radius:20px; box-shadow:0 20px 40px rgba(0,0,0,0.15);
+  max-width:90%;
 }
-.flap {
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 200px;
-    background: #f5e6d3;
-    clip-path: polygon(0 0, 100% 0, 50% 200px);
-    z-index: 2;
+.title { font-family:'Great Vibes', cursive; font-size:4.5rem; color:#8b5a2b; margin:1rem 0; }
+.title span { font-size:5rem; }
+.date { font-family:'Playfair Display', serif; font-size:1.8rem; color:#6d4c41; margin:1.5rem 0; }
+.btn-open {
+  margin-top:3rem; padding:14px 40px; background:#8b5a2b; color:#fff8e7;
+  border:none; border-radius:50px; font-size:1.1rem; cursor:pointer;
+  box-shadow:0 8px 20px rgba(139,90,43,0.3); transition:0.3s;
 }
-.letter {
-    position: absolute;
-    top: 60px; left: 30px; right: 30px;
-    background: #fffdf8;
-    height: 380px;
-    padding: 50px 30px;
-    text-align: center;
-    border: 2px dashed #d4a373;
-    z-index: 1;
-}
-.seal { font-size: 4rem; color: #c19a6b; margin-bottom: 20px; }
-.letter h1 { font-family: 'Dancing Script'; font-size: 4rem; color: #8d5524; }
-.date { font-size: 1.5rem; margin: 20px 0; color: #a67c52; }
-.to span { font-size: 1.8rem; font-weight: bold; color: #8d5524; }
-#openEnvelope {
-    margin-top: 40px;
-    padding: 12px 35px;
-    background: #a67c52;
-    color: white;
-    border: none;
-    border-radius: 50px;
-    font-family: 'Playfair Display';
-    cursor: pointer;
-}
-.flowers {
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: url('https://i.ibb.co/2q7jY7Q/floral-corner.png') top left no-repeat,
-                url('https://i.ibb.co/2q7jY7Q/floral-corner.png') bottom right no-repeat;
-    background-size: 200px;
-    opacity: 0.7;
-}
+.btn-open:hover { transform:translateY(-3px); background:#6d4c41; }
 
 /* Main Content */
-.main-content { display: none; padding-bottom: 80px; }
+.main { padding:2rem 1rem; line-height:1.8; }
+.container { max-width:800px; margin:0 auto; background:rgba(255,255,255,0.7); border-radius:15px; padding:2rem; }
+.ayat { font-style:italic; text-align:center; margin:2rem 0; color:#6d4c41; }
+.mempelai { display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:2rem; margin:3rem 0; text-align:center; }
+.mempelai h2 { font-family:'Cormorant Garamond', serif; font-size:2.2rem; color:#8b5a2b; }
+.ampersand { font-family:'Great Vibes', cursive; font-size:4rem; color:#a57c5a; }
 
-/* Hero */
-.hero {
-    height: 90vh;
-    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)),
-                url('https://images.unsplash.com/photo-1515934751635-c81c6ebb9c92?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=90') center/cover;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: #fff;
-}
-.vintage-frame {
-    background: rgba(255,255,255,0.9);
-    padding: 60px 80px;
-    border: 15px double #c19a6b;
-    max-width: 90%;
-}
-.bride-groom { font-family: 'Dancing Script'; font-size: 6rem; color: #8d5524; }
-.bride-groom span { margin: 0 30px; font-size: 4rem; }
-.tagline { font-style: italic; font-size: 1.4rem; margin-top: 20px; color: #666; }
+.event h3 { font-family:'Playfair Display', serif; font-size:1.8rem; margin:2rem 0 1rem; color:#8b5a2b; }
+.lokasi { font-weight:500; color:#5d4037; }
 
-/* Quote & Paper */
-.paper {
-    max-width: 800px;
-    margin: 60px auto;
-    background: #fffdf8;
-    padding: 50px;
-    border: 1px solid #e8dcca;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    position: relative;
-}
-.paper::before {
-    content: '';
-    position: absolute;
-    top: -20px; left: 50%;
-    transform: translateX(-50%);
-    width: 80px; height: 80px;
-    background: url('https://i.ibb.co/5YpY7YQ/wax-seal.png') center/contain no-repeat;
-}
-.ayat { font-size: 1.4rem; line-height: 2; color: #5d4037; }
-.sura { margin-top: 30px; font-weight: bold; color: #a67c52; }
-
-/* Couple */
-.couple {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 60px;
-    padding: 80px 20px;
-    flex-wrap: wrap;
-    background: #fdf6f0;
-}
-.frame {
-    width: 280px; height: 380px;
-    padding: 20px;
-    background: #fff;
-    border: 10px double #d4a373;
-    margin-bottom: 20px;
-}
-.frame img { width: 100%; height: 100%; object-fit: cover; }
-.person h3 { font-family: 'Dancing Script'; font-size: 2.5rem; color: #8d5524; text-align: center; }
-.ampersand { font-family: 'Dancing Script'; font-size: 5rem; color: #c19a6b; }
-
-/* Event Card */
-.event { padding: 60px 20px; text-align: center; }
-.card {
-    display: inline-block;
-    width: 380px;
-    margin: 20px;
-    padding: 40px;
-    background: #fffdf8;
-    border: 2px solid #d4a373;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-}
-.card h2 { font-family: 'Playfair Display'; color: #8d5524; margin-bottom: 20px; }
-.map-btn {
-    margin-top: 20px;
-    padding: 10px 30px;
-    background: #a67c52;
-    color: white;
-    text-decoration: none;
-    border-radius: 50px;
-    display: inline-block;
+.btn-maps {
+  display:inline-block; margin:2rem auto; padding:12px 30px;
+  background:#6d4c41; color:#fff; border-radius:50px;
 }
 
-/* Gallery & Countdown sama seperti sebelumnya, tinggal tambah sedikit sentuhan vintage */
-.gallery-grid img { border: 10px solid #fff; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
-
-.countdown { background: #fdf6f0; padding: 80px 20px; text-align: center; }
-#timer div { background: #fff; border: 3px solid #d4a373; }
-
-/* RSVP */
-.rsvp .paper input,
-.rsvp .paper select,
-.rsvp .paper textarea {
-    border: 1px dashed #d4a373;
-    background: #fffdf8;
+.rsvp form { display:flex; flex-direction:column; gap:1rem; max-width:500px; margin:2rem auto; }
+.rsvp input, .rsvp select, .rsvp textarea {
+  padding:12px; border:1px solid #ddd; border-radius:8px; font-family:inherit;
 }
-.rsvp button {
-    background: #a67c52;
-    color: white;
-    border-radius: 50px;
-    padding: 12px 30px;
-}
+.rsvp button { padding:12px; background:#8b5a2b; color:white; border:none; border-radius:8px; cursor:pointer; }
 
-/* Music */
-.music-toggle {
-    position: fixed;
-    bottom: 20px; right: 20px;
-    background: rgba(141,85,36,0.9);
-    color: white;
-    padding: 12px 20px;
-    border-radius: 50px;
-    cursor: pointer;
-    z-index: 100;
+.signature { margin-top:3rem; font-family:'Great Vibes', cursive; font-size:2rem; color:#8b5a2b; }
+
+/* Music Button */
+.music-control {
+  position:fixed; bottom:20px; right:20px; background:rgba(139,90,43,0.9);
+  color:white; padding:10px 15px; border-radius:50px; font-size:0.9rem; z-index:100;
+}
+.music-control button { background:none; border:none; color:white; font-size:1.2rem; margin-left:8px; cursor:pointer; }
+
+/* Responsive */
+@media (max-width:480px) {
+  .title { font-size:3.5rem; }
+  .title span { font-size:4rem; }
+  .cover-inner { padding:1.5rem; }
 }
