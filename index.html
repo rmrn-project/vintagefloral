@@ -1,70 +1,95 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Undangan Pernikahan Vintage Floral</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Undangan Andi & Sari</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:wght@400;500;600&family=Playfair+Display:wght@400;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="overlay"></div>
-    <div class="container">
-        <header>
-            <h1>Undangan Pernikahan</h1>
-            <p class="subtitle">Dengan penuh sukacita, kami mengundang Anda untuk bergabung dalam perayaan cinta kami</p>
-        </header>
 
-        <section class="couple">
-            <h2>Pasangan</h2>
-            <div class="couple-names">
-                <span class="bride">Nama Pengantin Wanita</span>
-                <span class="and">&</span>
-                <span class="groom">Nama Pengantin Pria</span>
-            </div>
-        </section>
+  <!-- Background -->
+  <div class="bg-floral"></div>
+  <div class="overlay"></div>
 
-        <section class="event-details">
-            <h2>Detail Acara</h2>
-            <p><strong>Tanggal:</strong> 1 Januari 2026</p>
-            <p><strong>Waktu:</strong> 10:00 AM - Selesai</p>
-            <p><strong>Lokasi:</strong> Gedung Serbaguna, Jakarta, Indonesia</p>
-            <div id="countdown">
-                <h3>Hitung Mundur Menuju Hari Bahagia</h3>
-                <div class="timer">
-                    <div><span id="days"></span> Hari</div>
-                    <div><span id="hours"></span> Jam</div>
-                    <div><span id="minutes"></span> Menit</div>
-                    <div><span id="seconds"></span> Detik</div>
-                </div>
-            </div>
-        </section>
-
-        <section class="rsvp">
-            <h2>Konfirmasi Kehadiran</h2>
-            <p>Silakan konfirmasi kehadiran Anda melalui form berikut:</p>
-            <form id="rsvp-form">
-                <input type="text" placeholder="Nama Anda" required>
-                <input type="email" placeholder="Email Anda" required>
-                <select required>
-                    <option value="">Apakah Anda Hadir?</option>
-                    <option value="yes">Ya, Saya Hadir</option>
-                    <option value="no">Maaf, Tidak Bisa Hadir</option>
-                </select>
-                <button type="submit">Kirim</button>
-            </form>
-            <p id="rsvp-message" style="display: none;">Terima kasih atas konfirmasinya!</p>
-        </section>
-
-        <footer>
-            <p>Dibuat dengan cinta pada 2025-2026</p>
-        </footer>
+  <!-- Cover -->
+  <section id="cover" class="cover active">
+    <div class="cover-inner">
+      <p class="intro">Kepada Yth.</p>
+      <p class="guest-name">Bapak/Ibu/Saudara/i</p>
+      <h1 class="title">Andi <span>&</span> Sari</h1>
+      <p class="date">25 Desember 2025</p>
+      <button id="openBtn" class="btn-open">Buka Undangan</button>
     </div>
+  </section>
 
-    <audio id="background-music" loop>
-        <source src="https://www.example.com/path-to-vintage-music.mp3" type="audio/mpeg">
-    </audio>
+  <!-- Main Content -->
+  <section id="main" class="main hidden">
+    <div class="container">
 
-    <script src="script.js"></script>
+      <header>
+        <p class="ayat">“Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu pasangan dari jenismu sendiri, supaya kamu cenderung dan merasa tenteram kepadanya...”<br><small>(Ar-Rum: 21)</small></p>
+      </header>
+
+      <div class="mempelai">
+        <div class="bride">
+          <h2>Sari Putri Lestari</h2>
+          <p>Putri dari Bapak Ahmad & Ibu Siti</p>
+        </div>
+        <div class="ampersand">&amp;</div>
+        <div class="groom">
+          <h2>Andi Pratama</h2>
+          <p>Putra dari Bapak Joko & Ibu Nur</p>
+        </div>
+      </div>
+
+      <div class="event">
+        <h3>Akad Nikah</h3>
+        <p>Minggu, 25 Desember 2025<br>09.00 WIB</p>
+        <p class="lokasi">Kediaman Mempelai Wanita<br>Jl. Melati No. 25, Bandung</p>
+
+        <h3>Resepsi</h3>
+        <p>Minggu, 25 Desember 2025<br>11.00 - 15.00 WIB</p>
+        <p class="lokasi">Gedung Serba Guna Dahlia<br>Jl. Cempaka No. 88, Bandung</p>
+      </div>
+
+      <div class="maps">
+        <a href="https://maps.app.goo.gl/contohlink" target="_blank" class="btn-maps">Buka Lokasi di Google Maps</a>
+      </div>
+
+      <div class="rsvp">
+        <h3>Kirimkan Doa & Ucapan</h3>
+        <form id="ucapanForm">
+          <input type="text" placeholder="Nama kamu" required />
+          <select required>
+            <option value="">Kehadiran</option>
+            <option>Hadir</option>
+            <option>Tidak Hadir</option>
+            <option>Belum Pasti</option>
+          </select>
+          <textarea placeholder="Tulis ucapan selamat..." rows="4"></textarea>
+          <button type="submit">Kirim Ucapan</button>
+        </form>
+      </div>
+
+      <footer>
+        <p>Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan doa restu.</p>
+        <p class="signature">Wassalamualaikum Wr. Wb<br>Andi & Sari</p>
+      </footer>
+
+    </div>
+  </section>
+
+  <!-- Tombol Musik (ikon doang) -->
+  <div class="music-btn" id="musicBtn">
+    <svg viewBox="0 0 24 24" width="24" height="24"><path fill="white" d="M12 3v18l-9-6H0V9h3l9-6zm7.5 8.5l-4.5 4.5 4.5 4.5-1.5 1.5-4.5-4.5-4.5 4.5-1.5-1.5 4.5-4.5-4.5-4.5 1.5-1.5 4.5 4.5 4.5-4.5 1.5 1.5z"/></svg>
+  </div>
+
+  <audio id="bgMusic" loop preload="auto">
+    <source src="https://undangan-digital.github.io/music/slow-wedding.mp3" type="audio/mpeg">
+  </audio>
+
+  <script src="script.js"></script>
 </body>
 </html>
