@@ -1,30 +1,31 @@
 document.addEventListener("DOMContentLoaded", function() {
-  const cover = document.getElementById("cover");
-  const main = document.getElementById("main");
-  const openBtn = document.getElementById("openBtn");
-  const music = document.getElementById("bgMusic");
-  const toggleBtn = document.getElementById("toggleMusic");
+  const cover     = document.getElementById("cover");
+  const main      = document.getElementById("main");
+  const openBtn   = document.getElementById("openBtn");
+  const music     = document.getElementById("bgMusic");
+  const musicBtn  = document.getElementById("musicBtn");
 
   // Buka undangan
   openBtn.addEventListener("click", () => {
-    cover.classList.remove("active");
     cover.classList.add("hidden");
     main.classList.remove("hidden");
-    setTimeout(() => { music.play(); toggleBtn.textContent = "Pause"; }, 1000);
+    document.body.style.overflow = "auto"; // aktifin scroll
+    setTimeout(() => music.play(), 800);
+    musicBtn.classList.add("playing");
   });
 
-  // Music toggle
-  toggleBtn.addEventListener("click", () => {
+  // Toggle musik + ganti ikon
+  musicBtn.addEventListener("click", () => {
     if (music.paused) {
       music.play();
-      toggleBtn.textContent = "Pause";
+      musicBtn.classList.add("playing");
     } else {
       music.pause();
-      toggleBtn.textContent = "Play";
+      musicBtn.classList.remove("playing");
     }
   });
 
-  // Tampilkan nama tamu dari URL (opsional)
+  // Nama tamu dari URL ?to=Nama+Tamu
   const urlParams = new URLSearchParams(window.location.search);
   const nama = urlParams.get('to');
   if (nama) {
