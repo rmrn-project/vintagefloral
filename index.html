@@ -6,11 +6,10 @@
   <title>Undangan Andi & Sari</title>
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:wght@400;500;600&family=Playfair+Display:wght@400;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
 </head>
 <body>
 
-  <!-- Background Floral -->
+  <!-- Background -->
   <div class="bg-floral"></div>
   <div class="overlay"></div>
 
@@ -29,12 +28,10 @@
   <section id="main" class="main hidden">
     <div class="container">
 
-      <!-- Header -->
       <header>
         <p class="ayat">“Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu pasangan dari jenismu sendiri, supaya kamu cenderung dan merasa tenteram kepadanya...”<br><small>(Ar-Rum: 21)</small></p>
       </header>
 
-      <!-- Mempelai -->
       <div class="mempelai">
         <div class="bride">
           <h2>Sari Putri Lestari</h2>
@@ -47,7 +44,6 @@
         </div>
       </div>
 
-      <!-- Acara -->
       <div class="event">
         <h3>Akad Nikah</h3>
         <p>Minggu, 25 Desember 2025<br>09.00 WIB</p>
@@ -58,28 +54,25 @@
         <p class="lokasi">Gedung Serba Guna Dahlia<br>Jl. Cempaka No. 88, Bandung</p>
       </div>
 
-      <!-- Maps -->
       <div class="maps">
-        <a href="https://maps.app.goo.gl/contohlink" target="_blank" class="btn-maps">Buka Google Maps</a>
+        <a href="https://maps.app.goo.gl/contohlink" target="_blank" class="btn-maps">Buka Lokasi di Google Maps</a>
       </div>
 
-      <!-- RSVP & Ucapan -->
       <div class="rsvp">
         <h3>Kirimkan Doa & Ucapan</h3>
         <form id="ucapanForm">
-          <input type="text" placeholder="Nama" required />
+          <input type="text" placeholder="Nama kamu" required />
           <select required>
             <option value="">Kehadiran</option>
             <option>Hadir</option>
             <option>Tidak Hadir</option>
             <option>Belum Pasti</option>
           </select>
-          <textarea placeholder="Tulis ucapan..." rows="4"></textarea>
+          <textarea placeholder="Tulis ucapan selamat..." rows="4"></textarea>
           <button type="submit">Kirim Ucapan</button>
         </form>
       </div>
 
-      <!-- Footer -->
       <footer>
         <p>Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan doa restu.</p>
         <p class="signature">Wassalamualaikum Wr. Wb<br>Andi & Sari</p>
@@ -88,13 +81,12 @@
     </div>
   </section>
 
-  <!-- Music Control -->
-  <div class="music-control">
-    <span>Musik</span>
-    <button id="toggleMusic">Play</button>
+  <!-- Tombol Musik (ikon doang) -->
+  <div class="music-btn" id="musicBtn">
+    <svg viewBox="0 0 24 24" width="24" height="24"><path fill="white" d="M12 3v18l-9-6H0V9h3l9-6zm7.5 8.5l-4.5 4.5 4.5 4.5-1.5 1.5-4.5-4.5-4.5 4.5-1.5-1.5 4.5-4.5-4.5-4.5 1.5-1.5 4.5 4.5 4.5-4.5 1.5 1.5z"/></svg>
   </div>
 
-  <audio id="bgMusic" loop>
+  <audio id="bgMusic" loop preload="auto">
     <source src="https://undangan-digital.github.io/music/slow-wedding.mp3" type="audio/mpeg">
   </audio>
 
