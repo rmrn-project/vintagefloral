@@ -1,46 +1,111 @@
-// script.js
 
-document.addEventListener('DOMContentLoaded', () => {
-    // Countdown Timer
-    const countdownDate = new Date('January 1, 2026 10:00:00').getTime();
+<!-- ===== script.js ===== -->
+// Small, dependency-free JS for RSVP + guestbook (stores in localStorage)
+(function(){
+  'use strict';
 
-    const updateCountdown = () => {
-        const now = new Date().getTime();
-        const distance = countdownDate - now;
+  // Elements
+  const openBtn = document.getElementById('openInvite');
+  const invite = document.getElementById('inviteCard');
+  const closeBtn = document.getElementById('closeInvite');
+  const form = document.getElementById('rsvpForm');
+  const feedback = document.getElementById('formFeedback');
+  const guestList = document.getElementById('guestList');
+  const saveDraftBtn = document.getElementById('saveDraft');
 
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+  // Utilities
+  function qs(selector, el=document){return el.querySelector(selector)}
 
-        document.getElementById('days').innerText = days;
-        document.getElementById('hours').innerText = hours;
-        document.getElementById('minutes').innerText = minutes;
-        document.getElementById('seconds').innerText = seconds;
+  function openInvite(){
+    invite.setAttribute('aria-hidden','false');
+    invite.classList.add('show');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeInvite(){
+    invite.setAttribute('aria-hidden','true');
+    invite.classList.remove('show');
+    document.body.style.overflow = '';
+  }
 
-        if (distance < 0) {
-            document.getElementById('countdown').innerHTML = '<h3>Hari Bahagia Telah Tiba!</h3>';
-        }
-    };
+  openBtn.addEventListener('click', openInvite);
+  closeBtn.addEventListener('click', closeInvite);
+  invite.addEventListener('click', (e)=>{ if(e.target===invite) closeInvite(); });
 
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
-
-    // RSVP Form Submission
-    const rsvpForm = document.getElementById('rsvp-form');
-    const rsvpMessage = document.getElementById('rsvp-message');
-
-    rsvpForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        // Di sini bisa tambahkan logika untuk kirim data ke server, tapi untuk sekarang simulasi saja
-        rsvpMessage.style.display = 'block';
-        rsvpForm.reset();
+  // Load guestbook from storage
+  function loadGuests(){
+    const raw = localStorage.getItem('guestbook_vintage');
+    try{
+      return raw ? JSON.parse(raw) : [];
+    }catch(e){ return []; }
+  }
+  function saveGuests(arr){
+    localStorage.setItem('guestbook_vintage', JSON.stringify(arr));
+  }
+  function renderGuests(){
+    const guests = loadGuests();
+    guestList.innerHTML = '';
+    if(!guests.length){ guestList.innerHTML = '<li class="guest-item">Belum ada ucapan. Jadilah yang pertama!</li>'; return; }
+    guests.slice().reverse().forEach(g=>{
+      const li = document.createElement('li');
+      li.className='guest-item';
+      li.innerHTML = `<strong>${escapeHtml(g.name)}</strong> — <span>${escapeHtml(g.attend)}</span><small>${escapeHtml(g.message || '')}</small>`;
+      guestList.appendChild(li);
     });
+  }
 
-    // Background Music (Opsional, autoplay mungkin diblok browser)
-    const music = document.getElementById('background-music');
-    music.play().catch(() => {
-        // Jika autoplay diblok, bisa tambah button untuk play
-        console.log('Autoplay diblok, tambahkan button jika perlu.');
-    });
-});
+  function escapeHtml(str){ if(!str) return ''; return String(str).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;'); }
+
+  // Form actions
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    const formData = new FormData(form);
+    const name = (formData.get('name')||'').trim();
+    const email = (formData.get('email')||'').trim();
+    const attend = formData.get('attend');
+    const message = (formData.get('message')||'').trim();
+
+    if(!name){ feedback.textContent='Masukkan nama terlebih dahulu.'; return; }
+
+    const guests = loadGuests();
+    guests.push({name, email, attend, message, at: new Date().toISOString()});
+    saveGuests(guests);
+    renderGuests();
+
+    feedback.textContent = 'Terima kasih! Konfirmasi Anda telah disimpan.';
+    form.reset();
+
+    setTimeout(()=>{ feedback.textContent=''; }, 4500);
+  });
+
+  saveDraftBtn.addEventListener('click', function(){
+    const name = qs('#name').value.trim();
+    const email = qs('#email').value.trim();
+    const attend = qs('#attend').value;
+    const message = qs('#message').value.trim();
+    const draft = {name,email,attend,message};
+    localStorage.setItem('rsvp_draft', JSON.stringify(draft));
+    feedback.textContent = 'Draft tersimpan.';
+    setTimeout(()=>{ feedback.textContent=''; },2000);
+  });
+
+  // Load draft on init
+  function loadDraft(){
+    const raw = localStorage.getItem('rsvp_draft');
+    if(!raw) return;
+    try{
+      const d = JSON.parse(raw);
+      if(d.name) qs('#name').value = d.name;
+      if(d.email) qs('#email').value = d.email;
+      if(d.attend) qs('#attend').value = d.attend;
+      if(d.message) qs('#message').value = d.message;
+    }catch(e){}
+  }
+
+  // keyboard close
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeInvite(); });
+
+  // init
+  renderGuests();
+  loadDraft();
+
+})();
