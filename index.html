@@ -1,95 +1,230 @@
-<!DOCTYPE html>
+<!--
+Undangan Vintage Floral (2025-2026)
+Tiga file: index.html, styles.css, script.js
+Simpan tiga bagian sebagai file terpisah di folder yang sama.
+
+index.html -> buka di browser
+styles.css -> link di head
+script.js -> link di akhir body
+-->
+
+<!-- ===== index.html ===== -->
+<!doctype html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Undangan Andi & Sari</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:wght@400;500;600&family=Playfair+Display:wght@400;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Undangan Pernikahan — Sandi & Ertia</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
+  <main class="page">
+    <header class="hero">
+      <!-- Decorative SVG floral corner -->
+      <svg class="floral" viewBox="0 0 200 200" aria-hidden="true">
+        <defs>
+          <linearGradient id="g" x1="0" x2="1">
+            <stop offset="0%" stop-color="#fbe8e6" />
+            <stop offset="100%" stop-color="#fff5f7" />
+          </linearGradient>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#g)"/>
+        <g transform="translate(10,10) scale(.9)">
+          <path d="M30 90 C10 60, 60 10, 90 30 C120 50, 140 90, 110 110 C80 130, 40 120, 30 90" fill="#f7d6d9" stroke="#d69" stroke-width="1"/>
+          <circle cx="36" cy="76" r="6" fill="#e3b5b8"/>
+          <circle cx="90" cy="40" r="4" fill="#d9949a"/>
+        </g>
+      </svg>
 
-  <!-- Background -->
-  <div class="bg-floral"></div>
-  <div class="overlay"></div>
+      <div class="hero-inner">
+        <h1 class="couple">Sandi &amp; Ertia</h1>
+        <p class="subtitle">Mengundang Anda untuk hadir di hari bahagia kami</p>
+        <p class="date">Sabtu, 12 Juni 2026 &middot; 10:00 WIB</p>
+        <button class="btn open-invite" id="openInvite">Lihat Undangan</button>
+      </div>
+    </header>
 
-  <!-- Cover -->
-  <section id="cover" class="cover active">
-    <div class="cover-inner">
-      <p class="intro">Kepada Yth.</p>
-      <p class="guest-name">Bapak/Ibu/Saudara/i</p>
-      <h1 class="title">Andi <span>&</span> Sari</h1>
-      <p class="date">25 Desember 2025</p>
-      <button id="openBtn" class="btn-open">Buka Undangan</button>
-    </div>
-  </section>
+    <section class="card invite" id="inviteCard" aria-hidden="true">
+      <button class="close" id="closeInvite" aria-label="Tutup">✕</button>
+      <div class="invite-content">
+        <h2>Akan Diselenggarakan</h2>
+        <p class="lead">Dengan memohon ridho Allah SWT, kami mengundang Bapak/Ibu/Saudara/i untuk hadir pada acara pernikahan kami.</p>
+        <dl class="details">
+          <div>
+            <dt>Akad</dt>
+            <dd>12 Juni 2026 &middot; 10:00 WIB<br>Masjid Agung Kota</dd>
+          </div>
+          <div>
+            <dt>Resepsi</dt>
+            <dd>12 Juni 2026 &middot; 13:00 WIB<br>Gedung Serbaguna Dahlia</dd>
+          </div>
+          <div>
+            <dt>Alamat</dt>
+            <dd>Jl. Mawar No. 88, Jakarta</dd>
+          </div>
+        </dl>
 
-  <!-- Main Content -->
-  <section id="main" class="main hidden">
-    <div class="container">
+        <div class="rsvp">
+          <h3>Konfirmasi Kehadiran</h3>
+          <form id="rsvpForm" novalidate>
+            <label for="name">Nama <span aria-hidden="true">*</span></label>
+            <input id="name" name="name" type="text" required placeholder="Nama lengkap">
 
-      <header>
-        <p class="ayat">“Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu pasangan dari jenismu sendiri, supaya kamu cenderung dan merasa tenteram kepadanya...”<br><small>(Ar-Rum: 21)</small></p>
-      </header>
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" placeholder="email@domain.com">
 
-      <div class="mempelai">
-        <div class="bride">
-          <h2>Sari Putri Lestari</h2>
-          <p>Putri dari Bapak Ahmad & Ibu Siti</p>
+            <label for="attend">Kehadiran</label>
+            <select id="attend" name="attend">
+              <option value="yes">Hadir</option>
+              <option value="no">Tidak Hadir</option>
+              <option value="maybe">Mungkin</option>
+            </select>
+
+            <label for="message">Pesan / Doa</label>
+            <textarea id="message" name="message" rows="3" placeholder="Doa atau pesan singkat (opsional)"></textarea>
+
+            <div class="form-actions">
+              <button class="btn" type="submit">Kirim</button>
+              <button class="btn ghost" type="button" id="saveDraft">Simpan Draft</button>
+            </div>
+
+            <p id="formFeedback" class="feedback" role="status" aria-live="polite"></p>
+          </form>
         </div>
-        <div class="ampersand">&amp;</div>
-        <div class="groom">
-          <h2>Andi Pratama</h2>
-          <p>Putra dari Bapak Joko & Ibu Nur</p>
-        </div>
+
+        <section class="guestbook" aria-live="polite">
+          <h3>Ucapan & Doa</h3>
+          <ul id="guestList" class="guest-list"></ul>
+        </section>
+
       </div>
+    </section>
 
-      <div class="event">
-        <h3>Akad Nikah</h3>
-        <p>Minggu, 25 Desember 2025<br>09.00 WIB</p>
-        <p class="lokasi">Kediaman Mempelai Wanita<br>Jl. Melati No. 25, Bandung</p>
+    <footer class="foot">
+      <p>Terima kasih — Sandi &amp; Ertia</p>
+    </footer>
+  </main>
 
-        <h3>Resepsi</h3>
-        <p>Minggu, 25 Desember 2025<br>11.00 - 15.00 WIB</p>
-        <p class="lokasi">Gedung Serba Guna Dahlia<br>Jl. Cempaka No. 88, Bandung</p>
-      </div>
-
-      <div class="maps">
-        <a href="https://maps.app.goo.gl/contohlink" target="_blank" class="btn-maps">Buka Lokasi di Google Maps</a>
-      </div>
-
-      <div class="rsvp">
-        <h3>Kirimkan Doa & Ucapan</h3>
-        <form id="ucapanForm">
-          <input type="text" placeholder="Nama kamu" required />
-          <select required>
-            <option value="">Kehadiran</option>
-            <option>Hadir</option>
-            <option>Tidak Hadir</option>
-            <option>Belum Pasti</option>
-          </select>
-          <textarea placeholder="Tulis ucapan selamat..." rows="4"></textarea>
-          <button type="submit">Kirim Ucapan</button>
-        </form>
-      </div>
-
-      <footer>
-        <p>Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan doa restu.</p>
-        <p class="signature">Wassalamualaikum Wr. Wb<br>Andi & Sari</p>
-      </footer>
-
-    </div>
-  </section>
-
-  <!-- Tombol Musik (ikon doang) -->
-  <div class="music-btn" id="musicBtn">
-    <svg viewBox="0 0 24 24" width="24" height="24"><path fill="white" d="M12 3v18l-9-6H0V9h3l9-6zm7.5 8.5l-4.5 4.5 4.5 4.5-1.5 1.5-4.5-4.5-4.5 4.5-1.5-1.5 4.5-4.5-4.5-4.5 1.5-1.5 4.5 4.5 4.5-4.5 1.5 1.5z"/></svg>
-  </div>
-
-  <audio id="bgMusic" loop preload="auto">
-    <source src="https://undangan-digital.github.io/music/slow-wedding.mp3" type="audio/mpeg">
-  </audio>
-
-  <script src="script.js"></script>
+  <script src="script.js" defer></script>
 </body>
 </html>
+
+
+
+
+
+
+
+<!-- ===== script.js ===== -->
+// Small, dependency-free JS for RSVP + guestbook (stores in localStorage)
+(function(){
+  'use strict';
+
+  // Elements
+  const openBtn = document.getElementById('openInvite');
+  const invite = document.getElementById('inviteCard');
+  const closeBtn = document.getElementById('closeInvite');
+  const form = document.getElementById('rsvpForm');
+  const feedback = document.getElementById('formFeedback');
+  const guestList = document.getElementById('guestList');
+  const saveDraftBtn = document.getElementById('saveDraft');
+
+  // Utilities
+  function qs(selector, el=document){return el.querySelector(selector)}
+
+  function openInvite(){
+    invite.setAttribute('aria-hidden','false');
+    invite.classList.add('show');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeInvite(){
+    invite.setAttribute('aria-hidden','true');
+    invite.classList.remove('show');
+    document.body.style.overflow = '';
+  }
+
+  openBtn.addEventListener('click', openInvite);
+  closeBtn.addEventListener('click', closeInvite);
+  invite.addEventListener('click', (e)=>{ if(e.target===invite) closeInvite(); });
+
+  // Load guestbook from storage
+  function loadGuests(){
+    const raw = localStorage.getItem('guestbook_vintage');
+    try{
+      return raw ? JSON.parse(raw) : [];
+    }catch(e){ return []; }
+  }
+  function saveGuests(arr){
+    localStorage.setItem('guestbook_vintage', JSON.stringify(arr));
+  }
+  function renderGuests(){
+    const guests = loadGuests();
+    guestList.innerHTML = '';
+    if(!guests.length){ guestList.innerHTML = '<li class="guest-item">Belum ada ucapan. Jadilah yang pertama!</li>'; return; }
+    guests.slice().reverse().forEach(g=>{
+      const li = document.createElement('li');
+      li.className='guest-item';
+      li.innerHTML = `<strong>${escapeHtml(g.name)}</strong> — <span>${escapeHtml(g.attend)}</span><small>${escapeHtml(g.message || '')}</small>`;
+      guestList.appendChild(li);
+    });
+  }
+
+  function escapeHtml(str){ if(!str) return ''; return String(str).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;'); }
+
+  // Form actions
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    const formData = new FormData(form);
+    const name = (formData.get('name')||'').trim();
+    const email = (formData.get('email')||'').trim();
+    const attend = formData.get('attend');
+    const message = (formData.get('message')||'').trim();
+
+    if(!name){ feedback.textContent='Masukkan nama terlebih dahulu.'; return; }
+
+    const guests = loadGuests();
+    guests.push({name, email, attend, message, at: new Date().toISOString()});
+    saveGuests(guests);
+    renderGuests();
+
+    feedback.textContent = 'Terima kasih! Konfirmasi Anda telah disimpan.';
+    form.reset();
+
+    setTimeout(()=>{ feedback.textContent=''; }, 4500);
+  });
+
+  saveDraftBtn.addEventListener('click', function(){
+    const name = qs('#name').value.trim();
+    const email = qs('#email').value.trim();
+    const attend = qs('#attend').value;
+    const message = qs('#message').value.trim();
+    const draft = {name,email,attend,message};
+    localStorage.setItem('rsvp_draft', JSON.stringify(draft));
+    feedback.textContent = 'Draft tersimpan.';
+    setTimeout(()=>{ feedback.textContent=''; },2000);
+  });
+
+  // Load draft on init
+  function loadDraft(){
+    const raw = localStorage.getItem('rsvp_draft');
+    if(!raw) return;
+    try{
+      const d = JSON.parse(raw);
+      if(d.name) qs('#name').value = d.name;
+      if(d.email) qs('#email').value = d.email;
+      if(d.attend) qs('#attend').value = d.attend;
+      if(d.message) qs('#message').value = d.message;
+    }catch(e){}
+  }
+
+  // keyboard close
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeInvite(); });
+
+  // init
+  renderGuests();
+  loadDraft();
+
+})();
