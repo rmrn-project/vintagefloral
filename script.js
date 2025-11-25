@@ -1,19 +1,33 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const guest = new URLSearchParams(location.search).get('to');
-    if (guest) document.getElementById('guestName').textContent = decodeURIComponent(guest);
+document.addEventListener("DOMContentLoaded", function() {
+  const cover = document.getElementById("cover");
+  const main = document.getElementById("main");
+  const openBtn = document.getElementById("openBtn");
+  const music = document.getElementById("bgMusic");
+  const toggleBtn = document.getElementById("toggleMusic");
 
-    document.getElementById('openEnvelope').addEventListener('click', () => {
-        document.getElementById('envelope').style.display = 'none';
-        document.getElementById('mainContent').style.display = 'block';
-        document.body.style.background = '#fdf6f0 url("https://i.ibb.co/4p7YQ7K/vintage-paper.jpg") repeat';
-        startCountdown();
-        playMusic();
-    });
+  // Buka undangan
+  openBtn.addEventListener("click", () => {
+    cover.classList.remove("active");
+    cover.classList.add("hidden");
+    main.classList.remove("hidden");
+    setTimeout(() => { music.play(); toggleBtn.textContent = "Pause"; }, 1000);
+  });
 
-    // Countdown & musik sama persis seperti versi rustic sebelumnya
-    // (tinggal copy dari script.js rustic, ganti tanggal kalau perlu)
+  // Music toggle
+  toggleBtn.addEventListener("click", () => {
+    if (music.paused) {
+      music.play();
+      toggleBtn.textContent = "Pause";
+    } else {
+      music.pause();
+      toggleBtn.textContent = "Play";
+    }
+  });
 
-    // Form submit alert
-    document.getElementById('rsvpForm').onsubmit = e => { e.preventDefault(); alert('Terima kasih konfirmasinya! 💌'); e.target.reset(); };
-    document.getElementById('wishForm').onsubmit = e => { e.preventDefault(); alert('Ucapanmu sudah kami terima dengan penuh cinta 🥰'); e.target.reset(); };
+  // Tampilkan nama tamu dari URL (opsional)
+  const urlParams = new URLSearchParams(window.location.search);
+  const nama = urlParams.get('to');
+  if (nama) {
+    document.querySelector('.guest-name').textContent = decodeURIComponent(nama);
+  }
 });
